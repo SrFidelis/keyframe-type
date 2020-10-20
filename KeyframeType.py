@@ -30,7 +30,7 @@ bl_info = {
     "version": (1, 0),
     "blender": (2, 80, 0),
     "location": "View3D > Nkey Panel > Animate -> KeyframeType",
-    "description": "Create keyframes by defining their type.",
+    "description": "Creates a keyframe and defines its type.",
     "warning": "",
     "support": "COMMUNITY",
     "category": "Animation"}
