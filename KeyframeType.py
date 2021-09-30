@@ -1,4 +1,4 @@
-# POSETIPO v1.0 - 3Dview Addon - Blender 2.8
+# keyframe Type v1.2 - 3Dview Addon - Blender 3.x
 #
 # THIS SCRIPT IS LICENSED UNDER GPL, 
 # please read the license block.
@@ -23,14 +23,14 @@
 
 
 bl_info = {
-    "name": "KeyframeType",
+    "name": "PoseTipo",
     "author": "Vinícius Fidelis PK",
-    "tracker_url": "https://github.com/SrFidelis/keyframe-type/issues",
-    "wiki_url": "https://github.com/SrFidelis/keyframe-type", 
-    "version": (1, 0),
-    "blender": (2, 80, 0),
-    "location": "View3D > Nkey Panel > Animate -> KeyframeType",
-    "description": "Creates a keyframe and defines its type.",
+    "tracker_url": "https://bit.ly/37XEG7E",
+    "wiki_url": "https://bit.ly/2W41gJ9",
+    "version": (1, 2),
+    "blender": (3, 0, 0),
+    "location": "3D View > Nkey Panel > Animation -> PoseTipo",
+    "description": "Cria keyframes definindo seu tipo.",
     "warning": "",
     "support": "COMMUNITY",
     "category": "Animation"}
@@ -40,7 +40,6 @@ import bpy
 from bpy.types import Panel
 
 
-#bpy.ops.anim.keying_set_active_set(type='LocRotScale') #Define LocRocScale keying by default
 def deletarKeyframe():
     try:
         bpy.ops.anim.keyframe_delete()
@@ -55,7 +54,11 @@ class OPERADOR_ch(bpy.types.Operator):
     def execute(self, context): 
         deletarKeyframe()
         bpy.context.scene.tool_settings.keyframe_type = 'KEYFRAME' 
-        bpy.ops.anim.keyframe_insert() 
+        try:
+            bpy.ops.anim.keyframe_insert()
+        except:
+            self.report(type={'ERROR'}, message="No active Keying Set")
+            return {'FINISHED'}
 
         return {'FINISHED'}
 
@@ -67,7 +70,11 @@ class OPERADOR_ext(bpy.types.Operator):
     def execute(self, context): 
         deletarKeyframe()        
         bpy.context.scene.tool_settings.keyframe_type = 'EXTREME' 
-        bpy.ops.anim.keyframe_insert() 
+        try:
+            bpy.ops.anim.keyframe_insert()
+        except:
+            self.report(type={'ERROR'}, message="No active Keying Set")
+            return {'FINISHED'}
         
         return {'FINISHED'}
 
@@ -79,7 +86,11 @@ class OPERADOR_pss(bpy.types.Operator):
     def execute(self, context): 
         deletarKeyframe()
         bpy.context.scene.tool_settings.keyframe_type = 'BREAKDOWN' 
-        bpy.ops.anim.keyframe_insert() 
+        try:
+            bpy.ops.anim.keyframe_insert()
+        except:
+            self.report(type={'ERROR'}, message="No active Keying Set")
+            return {'FINISHED'} 
         
         return {'FINISHED'}
 
@@ -91,7 +102,11 @@ class OPERADOR_ent(bpy.types.Operator):
     def execute(self, context): 
         deletarKeyframe()
         bpy.context.scene.tool_settings.keyframe_type = 'JITTER' 
-        bpy.ops.anim.keyframe_insert() 
+        try:
+            bpy.ops.anim.keyframe_insert()
+        except:
+            self.report(type={'ERROR'}, message="No active Keying Set")
+            return {'FINISHED'} 
         
         return {'FINISHED'}
 
